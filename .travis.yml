@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mosza16/hello-react-docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true mosza16/hello-react-docker npm run test -- --coverage
